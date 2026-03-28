@@ -18,9 +18,6 @@ function Cart({ cart, updateQuantity, removeFromCart }) {
         >
           <div className="text-center mb-6">
             <h4 className="text-4xl mb-2 capitalize">{item.name}</h4>
-            <p className="text-2xl text-gray-600">
-              Price: {item.price * item.quantity} EGP
-            </p>
           </div>
 
           <div className="space-x-6 flex items-center">

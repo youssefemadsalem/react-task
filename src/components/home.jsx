@@ -1,6 +1,5 @@
 import { useState } from "react";
 
-// Added cart and toggleCartItem props here
 function Home({ data, cart, toggleCartItem }) {
   const [activeCategory, setActiveCategory] = useState("All");
 
@@ -44,7 +43,9 @@ function Home({ data, cart, toggleCartItem }) {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {filteredData.map((item) => {
-          const isInCart = cart?.some((c) => c.id === item.id);
+          const isInCart = cart
+            ? cart.findIndex((c) => c.id === item.id) !== -1
+            : false;
 
           return (
             <div

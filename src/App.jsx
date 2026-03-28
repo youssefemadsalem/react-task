@@ -21,9 +21,9 @@ function App() {
   const [cart, setCart] = useState([]);
 
   const toggleCartItem = (product) => {
-    const isAlreadyInCart = cart.some((item) => item.id === product.id);
+    const itemIndex = cart.findIndex((item) => item.id === product.id);
 
-    if (isAlreadyInCart) {
+    if (itemIndex !== -1) {
       setCart(cart.filter((item) => item.id !== product.id));
     } else {
       setCart([...cart, { ...product, quantity: 1 }]);
