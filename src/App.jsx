@@ -1,24 +1,33 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import Navbar from "./components/navbar";
 import Cart from "./components/Cart";
 import Home from "./components/home";
 import { Route, Routes } from "react-router";
 
-const menuData = [
-  { id: 1, name: "small burger", price: 90, cateId: 1 },
-  { id: 2, name: "medium burger", price: 120, cateId: 1 },
-  { id: 3, name: "large burger", price: 200, cateId: 1 },
-  { id: 4, name: "small cola", price: 10, cateId: 2 },
-  { id: 5, name: "medium cola", price: 15, cateId: 2 },
-  { id: 6, name: "large cola", price: 20, cateId: 2 },
-  { id: 7, name: "small fries", price: 20, cateId: 3 },
-  { id: 8, name: "medium fries", price: 25, cateId: 3 },
-  { id: 9, name: "large fries", price: 35, cateId: 3 },
-];
-
 function App() {
   const [cart, setCart] = useState([]);
+  const [menuData, setMenuData] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchMenu = async () => {
+      try {
+        const res = await fetch("http://localhost:3000/menu");
+        const data = await res.json();
+
+        setTimeout(() => {
+          setMenuData(data);
+          setLoading(false);
+        }, 2000);
+      } catch (error) {
+        console.error("Error fetching menu:", error);
+        setLoading(false);
+      }
+    };
+
+    fetchMenu();
+  }, []);
 
   const toggleCartItem = (product) => {
     const itemIndex = cart.findIndex((item) => item.id === product.id);
@@ -45,6 +54,10 @@ function App() {
   const removeFromCart = (id) => {
     setCart(cart.filter((item) => item.id !== id));
   };
+
+  if (loading) {
+    return <div>Loading menu...</div>;
+  }
 
   return (
     <>
