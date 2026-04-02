@@ -4,6 +4,7 @@ import Navbar from "./components/navbar";
 import Cart from "./components/Cart";
 import Home from "./components/home";
 import { Route, Routes } from "react-router";
+import Admin from "./components/Admin";
 
 function App() {
   const [cart, setCart] = useState([]);
@@ -79,6 +80,8 @@ function App() {
             />
           }
         />
+
+        <Route path="/admin" element={<Admin />} />
       </Routes>
     </>
   );

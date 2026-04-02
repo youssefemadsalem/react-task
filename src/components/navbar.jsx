@@ -13,6 +13,9 @@ const Navbar = () => {
             <NavLink to="/">home</NavLink>
           </li>
           <li>
+            <NavLink to="/admin">admin</NavLink>
+          </li>
+          <li>
             <NavLink to="/cart">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
