@@ -56,6 +56,22 @@ function App() {
     setCart(cart.filter((item) => item.id !== id));
   };
 
+  const DeleteMenuItem = async (id) => {
+    try {
+      const response = await fetch(`http://localhost:3000/menu/${id}`, {
+        method: "DELETE",
+      });
+
+      if (response.ok) {
+        setMenuData(menuData.filter((item) => item.id !== id));
+      } else {
+        console.error("Failed to delete the item from the server.");
+      }
+    } catch (error) {
+      console.error("Error connecting to the server:", error);
+    }
+  };
+
   if (loading) {
     return <div>Loading menu...</div>;
   }
@@ -81,7 +97,12 @@ function App() {
           }
         />
 
-        <Route path="/admin" element={<Admin />} />
+        <Route
+          path="/admin"
+          element={
+            <Admin menuData={menuData} deleteMenuItem={DeleteMenuItem} />
+          }
+        />
       </Routes>
     </>
   );
