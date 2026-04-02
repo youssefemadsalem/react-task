@@ -1,6 +1,10 @@
+import { useNavigate } from "react-router";
+
 function Admin({ menuData, deleteMenuItem }) {
+  const navigate = useNavigate();
+
   return (
-    <div className="p-8 max-w-5xl mx-auto">
+    <div className="p-8 max-w-5xl mx-auto relative">
       <h1 className="text-4xl font-bold text-center mb-8">Admin Dashboard</h1>
 
       <div className="overflow-x-auto bg-white shadow-md rounded-lg border border-gray-200">
@@ -28,7 +32,10 @@ function Admin({ menuData, deleteMenuItem }) {
                   </td>
                   <td className="p-4">{item.cateId}</td>
                   <td className="p-4 flex justify-center gap-3">
-                    <button className="px-4 py-2 bg-blue-500 text-white font-bold rounded shadow hover:bg-blue-600 transition">
+                    <button
+                      onClick={() => navigate(`/admin/edit/${item.id}`)}
+                      className="px-4 py-2 bg-blue-500 text-white font-bold rounded shadow hover:bg-blue-600 transition"
+                    >
                       Edit
                     </button>
 
@@ -54,6 +61,27 @@ function Admin({ menuData, deleteMenuItem }) {
           </tbody>
         </table>
       </div>
+
+      <button
+        onClick={() => navigate("/admin/create")}
+        className="fixed bottom-10 right-10 bg-green-500 text-white w-16 h-16 rounded-full shadow-2xl flex justify-center items-center hover:bg-green-600 hover:scale-105 transition-all"
+        title="Create New Item"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth={2.5}
+          stroke="currentColor"
+          className="w-8 h-8"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M12 4.5v15m7.5-7.5h-15"
+          />
+        </svg>
+      </button>
     </div>
   );
 }

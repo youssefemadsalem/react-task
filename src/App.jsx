@@ -5,6 +5,7 @@ import Cart from "./components/Cart";
 import Home from "./components/home";
 import { Route, Routes } from "react-router";
 import Admin from "./components/Admin";
+import AdminForm from "./components/AdminForm";
 
 function App() {
   const [cart, setCart] = useState([]);
@@ -30,6 +31,9 @@ function App() {
     fetchMenu();
   }, []);
 
+
+  
+
   const toggleCartItem = (product) => {
     const itemIndex = cart.findIndex((item) => item.id === product.id);
 
@@ -54,6 +58,44 @@ function App() {
 
   const removeFromCart = (id) => {
     setCart(cart.filter((item) => item.id !== id));
+  };
+
+  const AddMenuItem = async (newItem) => {
+    try {
+      const response = await fetch("http://localhost:3000/menu", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newItem),
+      });
+
+      if (response.ok) {
+        const addedItem = await response.json();
+
+        setMenuData([...menuData, addedItem]);
+      }
+    } catch (error) {
+      console.error("Error adding item:", error);
+    }
+  };
+
+  const EditMenuItem = async (id, updatedItem) => {
+    try {
+      const response = await fetch(`http://localhost:3000/menu/${id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(updatedItem),
+      });
+
+      if (response.ok) {
+        const returnedItem = await response.json();
+
+        setMenuData(
+          menuData.map((item) => (item.id === id ? returnedItem : item)),
+        );
+      }
+    } catch (error) {
+      console.error("Error updating item:", error);
+    }
   };
 
   const DeleteMenuItem = async (id) => {
@@ -101,6 +143,17 @@ function App() {
           path="/admin"
           element={
             <Admin menuData={menuData} deleteMenuItem={DeleteMenuItem} />
+          }
+        />
+
+        <Route
+          path="/admin/create"
+          element={<AdminForm menuData={menuData} addMenuItem={AddMenuItem} />}
+        />
+        <Route
+          path="/admin/edit/:id"
+          element={
+            <AdminForm menuData={menuData} editMenuItem={EditMenuItem} />
           }
         />
       </Routes>

@@ -1,18 +1,78 @@
 {
   "menu": [
-    { "id": 1, "name": "small burger", "price": 90, "cateId": 1 },
-    { "id": 2, "name": "medium burger", "price": 120, "cateId": 1 },
-    { "id": 3, "name": "large burger", "price": 200, "cateId": 1 },
-    { "id": 4, "name": "small cola", "price": 10, "cateId": 2 },
-    { "id": 5, "name": "medium cola", "price": 15, "cateId": 2 },
-    { "id": 6, "name": "large cola", "price": 20, "cateId": 2 },
-    { "id": 7, "name": "small fries", "price": 20, "cateId": 3 },
-    { "id": 8, "name": "medium fries", "price": 25, "cateId": 3 },
-    { "id": 9, "name": "large fries", "price": 35, "cateId": 3 }
+    {
+      "name": "xs burger",
+      "price": 90,
+      "cateId": 1,
+      "id": "1"
+    },
+    {
+      "id": "2",
+      "name": "medium burger",
+      "price": 120,
+      "cateId": 1
+    },
+    {
+      "id": "3",
+      "name": "large burger",
+      "price": 200,
+      "cateId": 1
+    },
+    {
+      "id": "4",
+      "name": "small cola",
+      "price": 10,
+      "cateId": 2
+    },
+    {
+      "id": "5",
+      "name": "medium cola",
+      "price": 15,
+      "cateId": 2
+    },
+    {
+      "id": "6",
+      "name": "large cola",
+      "price": 20,
+      "cateId": 2
+    },
+    {
+      "id": "7",
+      "name": "small fries",
+      "price": 20,
+      "cateId": 3
+    },
+    {
+      "id": "8",
+      "name": "medium fries",
+      "price": 25,
+      "cateId": 3
+    },
+    {
+      "id": "9",
+      "name": "large fries",
+      "price": 35,
+      "cateId": 3
+    },
+    {
+      "id": "9c67",
+      "name": "famliy fries",
+      "price": 60,
+      "cateId": 3
+    }
   ],
   "categories": [
-    { "id": 1, "name": "Burgers" },
-    { "id": 2, "name": "Cola" },
-    { "id": 3, "name": "Fries" }
+    {
+      "id": "1",
+      "name": "Burgers"
+    },
+    {
+      "id": "2",
+      "name": "Cola"
+    },
+    {
+      "id": "3",
+      "name": "Fries"
+    }
   ]
 }
